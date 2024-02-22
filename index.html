@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <h1>Web3</h1>
+    </header>
+    <div class="container">
+        <h2>Web3 Demo</h2>
+        <p>Web3 functionality.</p>
+        <button class="button" onclick="connectWallet()">Connect Wallet</button>
+        <p id="walletStatus"></p>
+        <h2>Issues with connection?</h2>
+        <p>Click the metamask extension and type password.</p>
+    </div>
+
+    <script>
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    document.getElementById('walletStatus').innerText = 'Wallet Connected Successfully!';
+                } catch (error) {
+                    console.error(error);
+                    document.getElementById('walletStatus').innerText = 'Failed to connect wallet.';
+                }
+            } else {
+                document.getElementById('walletStatus').innerText = 'Please install MetaMask to connect your wallet.';
+            }
+        }
+    </script>
+</body>
+
+</html>
